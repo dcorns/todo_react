@@ -3,29 +3,36 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
+//React is used by babel to compile JSX
 import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight
 } from 'react-native';
 
 export default class todo_react extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to todo_react!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
+        <TouchableHighlight style={[btnStyles.core, btnStyles.primary, btnStyles.hairlineBorder]}
+                            underlayColor="#60b044cc" activeOpacity={0.9} onPress={() => {}}>
+          <Text>ADD</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={[btnStyles.core, btnStyles.hairlineBorder, btnStyles.primary]}
+                            underlayColor="#60b044cc" activeOpacity={0.8} onPress={() => {}}>
+          <Text>COMPLETE</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={[btnStyles.core, btnStyles.hairlineBorder]} underlayColor="#60b044cc"
+                            activeOpacity={0.8} onPress={() => {}}>
+          <Text>EDIT</Text>
+        </TouchableHighlight>
+        <TouchableHighlight style={[btnStyles.core, btnStyles.hairlineBorder]} underlayColor="#60b044cc"
+                            activeOpacity={0.8} onPress={() => {}}>
+          <Text>DELETE</Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -34,20 +41,35 @@ export default class todo_react extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    backgroundColor: 'black',
+    flexDirection: 'row'
   },
-  welcome: {
+  title: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    color: 'green',
+    alignSelf: 'stretch'
+  }
 });
-
+const btnStyles = StyleSheet.create({
+  core: {
+    borderStyle: 'solid',
+    borderColor: '#d5d5d5',
+    borderWidth: 1,
+    backgroundColor: '#eee',
+    borderRadius: 3,
+    padding: 3,
+    paddingLeft: 5,
+    paddingRight: 5
+  },
+  primary: {
+    backgroundColor: '#60b044',
+    borderColor: '#355f27'
+  },
+  hairlineBorder: {
+    borderWidth: StyleSheet.hairlineWidth
+  }
+});
 AppRegistry.registerComponent('todo_react', () => todo_react);
