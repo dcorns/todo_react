@@ -1,69 +1,28 @@
 /**
  * TodoList
- * Created by dcorns on 2/22/17
+ * Created by dcorns on 2/26/17
  * Copyright © 2017 Dale Corns
  */
 'use strict';
-import React, {PropTypes, Component} from 'react';
-import {ListView, StyleSheet, View} from 'react-native';
-import * as globalStyles from '../styles/global';
-export default class TodoList extends Component{
-  constructor(props){
+import React, {Component} from 'react';
+import {View, Text, ListView} from 'react-native';
+export default class TodoList extends Component {
+  constructor(props) {
     super(props);
-    this.ds = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1.title !== row2.title
-    });
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: this.ds.cloneWithRows(props.todos)
+      dataSource: ds.cloneWithRows([{title: 'task1'}, {title: 'task2'}, {title: 'task3'}, {title: 'task4'}, {title: 'task5'}, {title: 'task6'}, {title: 'task7'}, {title: 'task8'},])
     };
   }
-  renderRow(rowData, ...rest){
-    const index = parseInt(rest[1], 10);
+
+  render() {
     return (
-      <TodoItem
-        style={styles.todoItem}
-        index={index}
-        {...rowData}
-        />
-    );
-  }
-  render(){
-    return(
-      <View style={globalStyles.COMMON_STYLES.pageContainer}>
+      <View style={{marginBottom: 10}}>
         <ListView
-        enableEmptySections
-        dataSource={this.state.dataSource}
-        renderRow={this.renderRow}
-        style={this.props.listStyles}
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => <Text style={{color: 'yellow', borderColor: 'green', borderStyle: 'solid', borderWidth: 1}}>{rowData.title}</Text>}
         />
       </View>
     );
   }
 }
-TodoList.propTypes={
-  todos: PropTypes.arrayOf(PropTypes.object),
-  listStyles: View.propTypes.style
-};
-TodoList.defaultProps = {
-  todo: [
-    {
-      title: 'Learn React Native',
-      status: 'pending',
-      dueDate: new Date().toDateString(),
-      startDate: new Date().toDateString(),
-      completeDate: ''
-    },
-    {
-      title: 'Learn Angular NativeScript',
-      status: 'pending',
-      dueDate: new Date().toDateString(),
-      startDate: new Date().toDateString(),
-      completeDate: ''
-    }
-  ]
-};
-const styles = StyleSheet.create({
-  todoItem: {
-    marginBottom: 20
-  }
-});
