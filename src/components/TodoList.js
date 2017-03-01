@@ -24,10 +24,8 @@ export default class TodoList extends Component {
           renderRow={(rowData, ...rest) =>
           <Text
           style={{color: 'yellow', borderColor: 'green', borderStyle: 'solid', borderWidth: 1}}
-          onPress={() => {
-              console.log(`task title: ${rowData.title} rowid: ${rest[1]}`);
-            }
-          }>
+          onPress={() => this.props.onTaskClick(rest[1])}
+          >
           {rowData.title}
           </Text>}
         />
