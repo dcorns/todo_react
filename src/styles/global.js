@@ -67,7 +67,7 @@ export const TASK_EDIT = StyleSheet.create({
   coreTask: {
     borderWidth: 3,
     borderStyle: 'solid',
-    borderColor: ADD_COLOR,
+    borderColor: EDIT_COLOR,
     alignSelf: 'stretch'
   },
   inputFields: {
