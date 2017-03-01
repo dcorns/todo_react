@@ -1,9 +1,8 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ * index.android.js
+ * android specific code
  */
-//React is used by babel to compile JSX
+//import React is used by babel to compile JSX
 import React, {Component} from 'react';
 import {
   AppRegistry,
@@ -16,35 +15,45 @@ import MainHeader from './src/components/MainHeader';
 import TodoInput from './src/components/TodoInput';
 import TodoList from './src/components/TodoList';
 import * as globalStyles from './src/styles/global';
-
+//Application's root component
 export default class todo_react extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: TaskData.data
+      data: TaskData.data,
     };
-    this.state.title = 'test Titel';
+    this.state.title = 'state Title';
+    this.state.dueDate = '03-12-2017';
+    this.state.details = 'state details';
     this.state.dataIdx = 0;
-    this.state.tempTask = new Task();
-    function Task(){
-      this.title = 'test title';
-      this.dueDate = new Date();
-      this.completeDate = '';
-      this.titleChange = (txt) => {this.title = txt; console.log(this.title);};
-      this.dueDateChange = (dd) => {this.dueDate = dd};
-      this.detailsChange = (txt) => {this.details = txt};
-      this.completeDateChange = (cd) => {this.completeDate = cd};
-    }
   }
+//TodoInput callbacks changing state
+  handleTitleChange = (txt) => {
+    this.setState({title: txt});
+  };
+  handleDueDateChange = (dd) => {
+    this.setState({dueDate: dd});
+  };
+  handleDetailsChange = (txt) => {
+    this.setState({details: txt});
+  };
+  //The react native view and logic binding
   render() {
     return (
       <View style={globalStyles.COMMON_STYLES.container}>
         <MainHeader name={TaskData.name}/>
         <TodoList data={this.state.data} dataIdx = {this.state.dataIdx}/>
         <NavButtons/>
-        <TodoInput data={this.state.data} dataIdx = {this.state.dataIdx} tempTask = {this.state.tempTask}/>
+        <TodoInput title = {this.state.title}
+                   dueDate = {this.state.dueDate}
+                   details = {this.state.details}
+                   onTitleChange = {(txt) => this.handleTitleChange(txt)}
+                   onDueDateChange = {(dd) => this.handleDueDateChange(dd)}
+                   onDetailsChange = {(txt) => this.handleDetailsChange(txt)}
+        />
       </View>
     );
   }
 }
+
 AppRegistry.registerComponent('todo_react', () => todo_react);

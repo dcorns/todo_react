@@ -2,30 +2,29 @@
  * TodoInput
  * Created by dcorns on 2/24/17
  * Copyright © 2017 Dale Corns
+ * Component for adding, editing and viewing tasks
  */
 'use strict';
 import React, {Component} from 'react';
 import {View, TextInput, Text} from 'react-native';
 import {TASK_EDIT} from '../styles/global';
 export default class TodoInput extends Component{
+  //constructor used to access parent state and logic using props
   constructor(props){
     super(props);
-    this.title = this.props.tempTask.title;
-    this.dueDate = this.props.tempTask.dueDate;
-    this.details = this.props.tempTask.details;
   }
   render(){
     return(
       <View>
         <View style={TASK_EDIT.coreTask}>
-          <TextInput style={TASK_EDIT.inputFields} placeholder='Enter new task title here' onChangeText={(taskTitle) => this.props.tempTask.titleChange(taskTitle)}/>
-          <TextInput style={TASK_EDIT.inputFields} placeholder='Enter new task due date here' onChangeText={(taskDueDate) => this.props.tempTask.dueDateChange(taskDueDate)}/>
-          <TextInput style={TASK_EDIT.inputFields} placeholder='Enter new task details here' onChangeText={(taskDetails) => this.props.tempTask.detailsChange(taskDetails)}/>
+          <TextInput style={TASK_EDIT.inputFields} value={this.props.title} onChangeText={(taskTitle) => this.props.onTitleChange(taskTitle)}/>
+          <TextInput style={TASK_EDIT.inputFields} value={this.props.dueDate} onChangeText={(taskDueDate) => this.props.onDueDateChange(taskDueDate)}/>
+          <TextInput style={TASK_EDIT.inputFields} value={this.props.details} onChangeText={(taskDetails) => this.props.onDetailsChange(taskDetails)}/>
         </View>
         <View>
-          <Text style={TASK_EDIT.outputText}>Title: Boo Hoo!</Text>
-          <Text style={TASK_EDIT.outputText}>Due Date: ''</Text>
-          <Text style={TASK_EDIT.outputText}>Details: ''</Text>
+          <Text style={TASK_EDIT.outputText}>Title: {this.props.title}</Text>
+          <Text style={TASK_EDIT.outputText}>Due Date: {this.props.dueDate}</Text>
+          <Text style={TASK_EDIT.outputText}>Details: {this.props.details}</Text>
         </View>
 
       </View>
