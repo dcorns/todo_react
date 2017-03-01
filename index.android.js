@@ -21,11 +21,12 @@ export default class todo_react extends Component {
     super(props);
     this.state = {
       data: TaskData.data,
+      title: TaskData.data[0].title,
+      dueDate: TaskData.data[0].dueDate,
+      details: TaskData.data[0].details,
+      completeDate: TaskData.data[0].completeDate,
+      dataIdx: TaskData.dataIdx,
     };
-    this.state.title = 'state Title';
-    this.state.dueDate = '03-12-2017';
-    this.state.details = 'state details';
-    this.state.dataIdx = 0;
   }
 //TodoInput callbacks changing state
   handleTitleChange = (txt) => {
@@ -37,12 +38,17 @@ export default class todo_react extends Component {
   handleDetailsChange = (txt) => {
     this.setState({details: txt});
   };
+  //TodoList callbacks changing state
+  handleTaskClick = (idx) => {
+    this.setState({dataIdx: idx});
+  };
   //The react native view and logic binding
   render() {
     return (
       <View style={globalStyles.COMMON_STYLES.container}>
         <MainHeader name={TaskData.name}/>
-        <TodoList data={this.state.data} dataIdx = {this.state.dataIdx}/>
+        <TodoList data={this.state.data}
+                  dataIdx = {this.state.dataIdx}/>
         <NavButtons/>
         <TodoInput title = {this.state.title}
                    dueDate = {this.state.dueDate}
