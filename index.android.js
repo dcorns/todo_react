@@ -7,7 +7,8 @@ import React, {Component} from 'react';
 import {
   AppRegistry,
   View,
-  Text
+  Text,
+  ListView
 } from 'react-native';
 import TaskData from './src/data/TaskData';
 import MainButtons from './src/components/MainButtons';
@@ -55,7 +56,8 @@ export default class todo_react extends Component {
 
   };
   handleBtnDeletePress = () => {
-
+    TaskData.data.splice(this.state.dataIdx, 1);
+    this.setState({data: TaskData.data});
   };
   handleBtnAddPress = () => {
 
