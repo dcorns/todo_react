@@ -25,6 +25,7 @@ export default class TodoInput extends Component{
           <Text style={TASK_EDIT.outputText}>Title: {this.props.title}</Text>
           <Text style={TASK_EDIT.outputText}>Due Date: {this.props.dueDate}</Text>
           <Text style={TASK_EDIT.outputText}>Details: {this.props.details}</Text>
+          <Text style={TASK_EDIT.outputText}>Completed: {this.props.completeDate}</Text>
         </View>
       </View>
     )

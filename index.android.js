@@ -10,7 +10,7 @@ import {
   Text
 } from 'react-native';
 import TaskData from './src/data/TaskData';
-import NavButtons from './src/components/NavButtons';
+import MainButtons from './src/components/MainButtons';
 import MainHeader from './src/components/MainHeader';
 import TodoInput from './src/components/TodoInput';
 import TodoList from './src/components/TodoList';
@@ -46,6 +46,20 @@ export default class todo_react extends Component {
     this.setState({details: this.state.data[rowId].details});
     this.setState({completeDate: this.state.data[rowId].completeDate});
   };
+  //MainButtons callbacks changing state
+  handleBtnCompletePress = () => {
+    this.setState({completeDate: new Date().toLocaleDateString()});
+    this.state.data[this.state.dataIdx].completeDate = new Date().toLocaleDateString();
+  };
+  handleBtnEditPress = () => {
+
+  };
+  handleBtnDeletePress = () => {
+
+  };
+  handleBtnAddPress = () => {
+
+  };
   //The react native view and logic binding
   render() {
     return (
@@ -55,10 +69,15 @@ export default class todo_react extends Component {
                   dataIdx = {this.state.dataIdx}
                   onTaskClick = {(rowId) => this.handleTaskClick(rowId)}
         />
-        <NavButtons/>
+        <MainButtons onBtnCompletePress = {() => this.handleBtnCompletePress()}
+                     onBtnEditPress = {() => this.handleBtnEditPress()}
+                     onBtnDeletePress = {() => this.handleBtnDeletePress()}
+                     onBtnAddPress = {() => this.handleBtnAddPress()}
+        />
         <TodoInput title = {this.state.title}
                    dueDate = {this.state.dueDate}
                    details = {this.state.details}
+                   completeDate = {this.state.completeDate}
                    onTitleChange = {(txt) => this.handleTitleChange(txt)}
                    onDueDateChange = {(dd) => this.handleDueDateChange(dd)}
                    onDetailsChange = {(txt) => this.handleDetailsChange(txt)}
