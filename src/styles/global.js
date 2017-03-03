@@ -71,7 +71,7 @@ export const TASK_EDIT = StyleSheet.create({
     alignSelf: 'stretch'
   },
   inputFields: {
-    backgroundColor: '#e0ffff',
+    backgroundColor: '#ffa500',
     color: TEXT_COLOR,
     fontSize: 15
   },

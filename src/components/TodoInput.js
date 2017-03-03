@@ -14,20 +14,20 @@ export default class TodoInput extends Component{
     super(props);
   }
   render(){
-    return(
-      <View>
+    if(this.props.showTodoInput){
+      this.vw = <View>
         <View style={TASK_EDIT.coreTask}>
-          <TextInput style={TASK_EDIT.inputFields} value={this.props.title} onChangeText={(taskTitle) => this.props.onTitleChange(taskTitle)}/>
-          <TextInput style={TASK_EDIT.inputFields} value={this.props.dueDate} onChangeText={(taskDueDate) => this.props.onDueDateChange(taskDueDate)}/>
-          <TextInput style={TASK_EDIT.inputFields} value={this.props.details} onChangeText={(taskDetails) => this.props.onDetailsChange(taskDetails)}/>
-        </View>
-        <View>
-          <Text style={TASK_EDIT.outputText}>Title: {this.props.title}</Text>
-          <Text style={TASK_EDIT.outputText}>Due Date: {this.props.dueDate}</Text>
-          <Text style={TASK_EDIT.outputText}>Details: {this.props.details}</Text>
-          <Text style={TASK_EDIT.outputText}>Completed: {this.props.completeDate}</Text>
+          <TextInput style={TASK_EDIT.inputFields} placeholder={this.props.title} onChangeText={(taskTitle) => this.props.onTitleChange(taskTitle)}/>
+          <TextInput style={TASK_EDIT.inputFields} placeholder={this.props.dueDate} onChangeText={(taskDueDate) => this.props.onDueDateChange(taskDueDate)}/>
+          <TextInput style={TASK_EDIT.inputFields} placeholder={this.props.details} onChangeText={(taskDetails) => this.props.onDetailsChange(taskDetails)}/>
         </View>
       </View>
+    }
+    else{
+      this.vw = null;
+    }
+    return(
+      this.vw
     )
   }
 }
