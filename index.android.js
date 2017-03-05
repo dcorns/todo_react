@@ -133,9 +133,6 @@ export default class todo_react extends Component {
       TaskData.data.splice(this.state.dataIdx, 1);
       this._setTaskByIndex(this.state.dataIdx - 1);
     }
-    else{
-      this._setTaskByIndex(this.state.dataIdx);
-    }
     this._setTaskView('');
   };
 //The react native view and logic binding
